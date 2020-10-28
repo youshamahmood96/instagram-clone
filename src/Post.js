@@ -3,9 +3,24 @@ import './Post.css';
 import Avatar from "@material-ui/core/Avatar";
 import {db} from './firebase';
 import firebase from 'firebase'
-const Post = ({user,userName,caption,imageURL,postId}) => {
+const Post = ({user,userName,caption,imageURL,postId,timestamp}) => {
     const [comments,setComments] = useState([]);
     const [comment,setComment] = useState('');
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    var date = new Date(timestamp* 1000);
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    // Minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    var seconds = "0" + date.getSeconds();
+
+    // Will display time in 10:30:23 format
+    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+    
+    
     useEffect(()=>{
         let unsubscribe;
     if(postId){
@@ -44,7 +59,8 @@ const Post = ({user,userName,caption,imageURL,postId}) => {
             <img 
             className="post-image"
             src={imageURL} alt="post"></img>
-            <h4 className="post-text"><strong>Username</strong>:{caption}</h4>
+            <h4 className="post-text"><strong>{userName} </strong>{caption}</h4>
+            <p>{formattedTime}</p>
             {
                 <div className="post-comments">
                 {

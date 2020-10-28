@@ -57,7 +57,13 @@ const ImageUpload = ({username}) => {
 
     return (
         <div className="image-upload" >
-             <progress className="progress-bar" value={progress} max="100"></progress>
+             {progress?(
+                <progress className="progress-bar" value={progress} max="100"></progress>
+             ):(
+                 <progress style={{display:'none'}}></progress>
+             )
+            
+            }
             <input placeholder="enter a caption" onChange={event=>setCaption(event.target.value)} value={caption} type="text" name="" id=""/>
             <input type="file" onChange={handleChange} name="" id=""/>
             <Button onClick={handleUpload}>

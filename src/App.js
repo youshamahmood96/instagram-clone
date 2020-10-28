@@ -186,13 +186,13 @@ function App() {
     <div className="app-post-left">
     {
       posts.map(({id,post})=>(
-        <Post user={user} key={id} postId={id} userName={post.userName} caption={post.caption} imageURL={post.imageURL}></Post>
+        <Post user={user} key={id} postId={id} timestamp={post.timestamp} userName={post.userName} caption={post.caption} imageURL={post.imageURL}></Post>
       ))
     }
     </div>
     <div className="app-post-right">
     <InstagramEmbed
-    url='https://www.instagram.com/p/B_uf9dmAGPw/'
+    url='https://www.instagram.com/p/BSjlJhrAgFg/?utm_source=ig_embed&amp;utm_campaign=loading'
     maxWidth={320}
     hideCaption={false}
     containerTagName='div'
@@ -213,7 +213,7 @@ function App() {
     {user?.displayName ?
       (<ImageUpload username={user.displayName} ></ImageUpload>)
       :
-      <h3 style={{textAlign: 'center'}} >Sorry, you need to login to upload</h3>
+      <h3 style={{display:'none'}}>sorry</h3>
     }
     </div>
   );
